@@ -6,7 +6,7 @@ import math
 
 import pytest
 
-from scripts.validate_pretrained_outputs import (
+from deltavision.pretrained_validation import (
     count_non_finite_values,
     expected_feature_shape,
     reproducibility_metrics,

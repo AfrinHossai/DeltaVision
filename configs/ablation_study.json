@@ -1,0 +1,49 @@
+{
+  "benchmark_name": "deltavision_patch_size_change_frequency_ablation_v1",
+  "partition": "validation",
+  "image_width": 64,
+  "image_height": 64,
+  "sequence_length": 8,
+  "episodes_per_condition": 4,
+  "patch_sizes": [8, 16, 32],
+  "approximate_threshold": 0.01,
+  "warmup_repetitions": 5,
+  "timed_repetitions": 20,
+  "policy_order_seed": 20261204,
+  "equal_latency_relative_tolerance": 0.01,
+  "conditions": [
+    {
+      "name": "no_visual_changes",
+      "label": "No visual changes",
+      "base_seed": 45100,
+      "episode_id_prefix": "ablation_no_change",
+      "transformations": ["unchanged"]
+    },
+    {
+      "name": "sparse_local_changes",
+      "label": "Sparse local changes",
+      "base_seed": 45200,
+      "episode_id_prefix": "ablation_sparse_local",
+      "transformations": ["movement", "unchanged"]
+    },
+    {
+      "name": "moderate_local_changes",
+      "label": "Moderate local changes",
+      "base_seed": 45300,
+      "episode_id_prefix": "ablation_moderate_local",
+      "transformations": ["movement", "recoloring"]
+    },
+    {
+      "name": "frequent_widespread_changes",
+      "label": "Frequent widespread changes",
+      "base_seed": 45400,
+      "episode_id_prefix": "ablation_widespread",
+      "transformations": ["global_brightness"]
+    }
+  ],
+  "methods": [
+    "independent_frame_encoding",
+    "exact_patch_reuse",
+    "approximate_reuse_0.01"
+  ]
+}

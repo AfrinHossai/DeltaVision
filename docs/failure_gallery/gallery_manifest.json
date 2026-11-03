@@ -1,0 +1,99 @@
+{
+  "cases": [
+    {
+      "approximate_missed_patch_indices": [
+        22
+      ],
+      "case": "approximate_small_change_miss",
+      "description": "The orange cells are pixel-change patches that the fixed 0.01 RGB-difference gate reused. This is a handcrafted feature staleness example; the mask records rendered pixel differences only.",
+      "episode_id": "validation_episode_0011",
+      "fallback_missed_patch_indices": [
+        22
+      ],
+      "image": "approximate_small_change_miss.png",
+      "partition": "synthetic_validation",
+      "random_seed": 27111,
+      "source_manifest": "data/generated/research_benchmark/validation/manifest.jsonl",
+      "transformation_type": "disappearance",
+      "transition_index": 5
+    },
+    {
+      "approximate_missed_patch_indices": [],
+      "case": "global_brightness_shift",
+      "description": "A broad intensity change can make nearly every RGB pixel differ. The pixel mask therefore marks a large area and the configured global-area detector may force a full handcrafted refresh; this is visual change, not a semantic judgment.",
+      "episode_id": "validation_episode_0000",
+      "fallback_missed_patch_indices": [],
+      "image": "global_brightness_shift.png",
+      "partition": "synthetic_validation",
+      "random_seed": 27100,
+      "source_manifest": "data/generated/research_benchmark/validation/manifest.jsonl",
+      "transformation_type": "global_brightness",
+      "transition_index": 6
+    },
+    {
+      "approximate_missed_patch_indices": [
+        17,
+        18
+      ],
+      "case": "partial_occlusion_global_fallback_miss",
+      "description": "The saved validation analysis records missed changed patches for this policy category. The local 0.05 gate and 0.50 global changed-area trigger can both leave small-area changes under-refreshed.",
+      "episode_id": "validation_episode_0001",
+      "fallback_missed_patch_indices": [
+        17,
+        18
+      ],
+      "image": "partial_occlusion_global_fallback_miss.png",
+      "partition": "synthetic_validation",
+      "random_seed": 27101,
+      "source_manifest": "data/generated/research_benchmark/validation/manifest.jsonl",
+      "transformation_type": "partial_occlusion",
+      "transition_index": 3
+    },
+    {
+      "approximate_missed_patch_indices": [],
+      "case": "recoloring_global_fallback_miss",
+      "description": "Recoloring changes RGB statistics without adding semantic ground truth. In validation, the local 0.05/global 0.50 policy missed some pixel-changed patches in this category.",
+      "episode_id": "validation_episode_0000",
+      "fallback_missed_patch_indices": [
+        41,
+        42
+      ],
+      "image": "recoloring_global_fallback_miss.png",
+      "partition": "synthetic_validation",
+      "random_seed": 27100,
+      "source_manifest": "data/generated/research_benchmark/validation/manifest.jsonl",
+      "transformation_type": "recoloring",
+      "transition_index": 1
+    },
+    {
+      "approximate_missed_patch_indices": [],
+      "case": "frequent_widespread_changes",
+      "description": "All preprocessed frames were unique in the saved validation condition. The exact whole-frame cache had no hit and retained preprocessing, lookup, equality, and storage overhead.",
+      "episode_id": "frequent_widespread_changes_episode_0000",
+      "fallback_missed_patch_indices": [],
+      "image": "frequent_widespread_changes.png",
+      "partition": "synthetic_validation",
+      "random_seed": 515115,
+      "source_manifest": "data/generated/pretrained_cache_evaluation/validation/frequent_widespread_changes/manifest.jsonl",
+      "transformation_type": "global_brightness_sweep",
+      "transition_index": 0
+    },
+    {
+      "approximate_missed_patch_indices": [],
+      "case": "cache_no_speed_advantage",
+      "description": "On this frequent-change validation condition, the cache made every complete model forward and measured slower than independent inference. Cache-hit rate is not a speedup; capacity cannot reuse different preprocessed tensors.",
+      "episode_id": "frequent_widespread_changes_episode_0000",
+      "fallback_missed_patch_indices": [],
+      "image": "cache_no_speed_advantage.png",
+      "partition": "synthetic_validation",
+      "random_seed": 515115,
+      "source_manifest": "data/generated/pretrained_cache_evaluation/validation/frequent_widespread_changes/manifest.jsonl",
+      "transformation_type": "global_brightness_sweep",
+      "transition_index": 0
+    }
+  ],
+  "mask_interpretation": "rendered RGB pixel differences; not semantic labels",
+  "partition": "synthetic_validation",
+  "source_global_validation_report": "results/global_change_validation.json",
+  "source_pretrained_evaluation": "results/final_evaluation.json"
+}

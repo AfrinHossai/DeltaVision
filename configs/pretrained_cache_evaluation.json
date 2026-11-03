@@ -1,0 +1,46 @@
+{
+  "baseline_config": "configs/pretrained_baseline.json",
+  "validation_root": "data/generated/pretrained_cache_evaluation/validation",
+  "output_json": "results/pretrained_cache_evaluation.json",
+  "output_csv": "results/pretrained_cache_evaluation.csv",
+  "figure_dir": "docs/figures",
+  "width": 128,
+  "height": 128,
+  "sequence_length": 8,
+  "num_episodes": 4,
+  "source_seed": 515015,
+  "widespread_seed": 515115,
+  "policy_order_seed": 515215,
+  "brightness_sweep_factors": [0.3, 0.38, 0.46, 0.54, 0.62, 0.7, 0.78, 0.86],
+  "cache_capacity": 8,
+  "warmup_repetitions": 3,
+  "timed_repetitions": 5,
+  "maximum_absolute_difference_tolerance": 0.00001,
+  "minimum_cosine_similarity_tolerance": 0.999999,
+  "conditions": [
+    {
+      "name": "identical_consecutive_frames",
+      "label": "Identical consecutive",
+      "kind": "replay",
+      "source_frame_indices": [0, 0, 0, 0, 0, 0, 0, 0]
+    },
+    {
+      "name": "sparse_visual_changes",
+      "label": "Sparse changes",
+      "kind": "replay",
+      "source_frame_indices": [0, 0, 0, 0, 0, 0, 7, 7]
+    },
+    {
+      "name": "moderate_visual_changes",
+      "label": "Moderate changes",
+      "kind": "replay",
+      "source_frame_indices": [0, 0, 2, 2, 4, 4, 6, 6]
+    },
+    {
+      "name": "frequent_widespread_changes",
+      "label": "Frequent widespread",
+      "kind": "brightness_sweep",
+      "seed": 515115
+    }
+  ]
+}

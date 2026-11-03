@@ -1,0 +1,6 @@
+{
+  "validation_manifest": "data/generated/research_benchmark/validation/manifest.jsonl",
+  "patch_size": 16,
+  "local_thresholds": [0.01, 0.03, 0.05],
+  "global_change_threshold": 0.5
+}

@@ -1,0 +1,19 @@
+{
+  "episode_id": "validation_episode_0000",
+  "feature_family": "handcrafted_rgb_statistics",
+  "frame_count": 8,
+  "gif": "docs/demo/deltavision_demo.gif",
+  "limitation": "Visual demonstration only; CPU-generated handcrafted patch features, not a timing benchmark. The separate DINOv2 panel reuses saved validation results and does not perform inference.",
+  "mp4": null,
+  "partition": "synthetic_validation",
+  "random_seed": 27100,
+  "transition_types": [
+    "unchanged",
+    "recoloring",
+    "recoloring",
+    "partial_occlusion",
+    "unchanged",
+    "disappearance",
+    "global_brightness"
+  ]
+}

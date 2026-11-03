@@ -1,0 +1,44 @@
+{
+  "benchmark_name": "deltavision_synthetic_multiseed_v1",
+  "image_width": 128,
+  "image_height": 128,
+  "sequence_length": 8,
+  "patch_size": 16,
+  "transformations": [
+    "movement",
+    "recoloring",
+    "appearance",
+    "disappearance",
+    "partial_occlusion",
+    "global_brightness",
+    "unchanged"
+  ],
+  "thresholds": [0.01, 0.03, 0.05, 0.1],
+  "splits": {
+    "train": {
+      "episode_count": 100,
+      "base_seed": 17000,
+      "episode_id_prefix": "train"
+    },
+    "validation": {
+      "episode_count": 30,
+      "base_seed": 27100,
+      "episode_id_prefix": "validation"
+    },
+    "test": {
+      "episode_count": 30,
+      "base_seed": 37900,
+      "episode_id_prefix": "test"
+    }
+  },
+  "require_all_transformations_per_split": true,
+  "bootstrap": {
+    "replicates": 1000,
+    "confidence_level": 0.95,
+    "seed": 8675309
+  },
+  "threshold_selection": {
+    "method": "none",
+    "policy": "Thresholds are fixed before evaluation; test results are not used to select a preferred threshold."
+  }
+}

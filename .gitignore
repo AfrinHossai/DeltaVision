@@ -1,0 +1,58 @@
+# Python bytecode and test/lint caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.pyre/
+
+# Virtual environments and local environment files
+.venv/
+venv/
+env/
+ENV/
+.env
+.env.*
+!.env.example
+
+# Packaging and build outputs
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Downloaded data, model weights, and checkpoints
+# Keep only the policy README files in these directories.
+data/generated/
+data/**
+!data/README.md
+checkpoints/
+weights/
+pretrained/
+.cache/huggingface/
+**/.cache/huggingface/
+*.pt
+*.pth
+*.ckpt
+*.safetensors
+
+# Generated results and figures
+results/**
+!results/README.md
+docs/figures/*
+!docs/figures/.gitkeep
+!docs/figures/architecture.png
+!docs/figures/final_research_summary.png
+!docs/figures/accuracy_efficiency_tradeoff.png
+!docs/figures/pretrained_speedup.png
+!docs/figures/cache_capacity_summary.png
+outputs/
+artifacts/
+
+# Notebooks and editor/OS files
+.ipynb_checkpoints/
+.DS_Store
+.idea/
+.vscode/
+*.swp
+*.swo

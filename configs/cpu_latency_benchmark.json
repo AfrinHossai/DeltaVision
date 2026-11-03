@@ -1,0 +1,17 @@
+{
+  "validation_manifest": "data/generated/research_benchmark/validation/manifest.jsonl",
+  "expected_episode_count": 30,
+  "expected_frames_per_episode": 8,
+  "patch_size": 16,
+  "warmup_repetitions": 5,
+  "timed_repetitions": 30,
+  "policy_order_seed": 20261102,
+  "global_change_threshold": 0.5,
+  "policies": [
+    "independent_frame_encoding",
+    "exact_patch_reuse",
+    "approximate_reuse_0.01",
+    "approximate_reuse_0.05",
+    "approximate_reuse_0.05_global_fallback"
+  ]
+}

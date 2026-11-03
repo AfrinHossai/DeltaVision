@@ -1,0 +1,47 @@
+{
+  "baseline_config": "configs/pretrained_baseline.json",
+  "validation_root": "data/generated/pretrained_cache_ablation/validation",
+  "output_json": "results/pretrained_cache_ablation.json",
+  "output_csv": "results/pretrained_cache_ablation.csv",
+  "figure": "docs/figures/cache_capacity_ablation.png",
+  "width": 128,
+  "height": 128,
+  "base_seed": 516016,
+  "policy_order_seed": 516017,
+  "global_rgb_offset_modulus": 256,
+  "warmup_repetitions": 3,
+  "timed_repetitions": 5,
+  "cache_capacities": [1, 2, 4, 8, 16, 32],
+  "maximum_absolute_difference_tolerance": 0.00001,
+  "minimum_cosine_similarity_tolerance": 0.999999,
+  "conditions": [
+    {
+      "name": "repeated_identical_frames",
+      "label": "Repeated identical",
+      "bank_size": 1,
+      "offset_step": 4,
+      "trace": "repeat_single"
+    },
+    {
+      "name": "recurring_nonconsecutive_frames",
+      "label": "Recurring nonconsecutive",
+      "bank_size": 32,
+      "offset_step": 4,
+      "trace": "ascending_repeat_zero_descending"
+    },
+    {
+      "name": "sparse_changes",
+      "label": "Sparse changes",
+      "bank_size": 4,
+      "offset_step": 64,
+      "trace": "four_equal_blocks"
+    },
+    {
+      "name": "frequent_widespread_changes",
+      "label": "Frequent widespread",
+      "bank_size": 64,
+      "offset_step": 4,
+      "trace": "sequential"
+    }
+  ]
+}

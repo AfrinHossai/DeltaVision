@@ -1,0 +1,96 @@
+{
+  "experiment": "DeltaVision final held-out evaluation and statistical analysis",
+  "status": "prespecified_before_task17_final_evaluation",
+  "research_config": "configs/research_benchmark.json",
+  "research_data_root": "data/generated/research_benchmark",
+  "final_manifest": "data/generated/research_benchmark/test/manifest.jsonl",
+  "final_partition": "previously_inspected_held_out_test",
+  "prior_test_exposure": {
+    "status": "known_previous_inspection",
+    "statement": "Synthetic held-out results were inspected in earlier benchmark experiments before this final evaluation; this is not a blind evaluation."
+  },
+  "partition_provenance": {
+    "development": {
+      "partition": "train",
+      "episode_count": 100,
+      "seed_range": [17000, 17099]
+    },
+    "policy_configuration": {
+      "partition": "validation",
+      "episode_count": 30,
+      "seed_range": [27100, 27129],
+      "source_reports": [
+        "results/global_change_validation.json",
+        "results/pretrained_cache_evaluation.json"
+      ]
+    },
+    "final_evaluation": {
+      "partition": "test",
+      "episode_count": 30,
+      "seed_range": [37900, 37929]
+    }
+  },
+  "handcrafted": {
+    "image_width": 128,
+    "image_height": 128,
+    "sequence_length": 8,
+    "patch_size": 16,
+    "methods": [
+      {
+        "name": "independent_encoding",
+        "policy": "independent_frame_encoding",
+        "refresh_every_patch": true
+      },
+      {
+        "name": "exact_patch_reuse",
+        "policy": "exact_raw_patch_equality",
+        "threshold": null
+      },
+      {
+        "name": "approximate_patch_reuse_0.01",
+        "policy": "normalized_mean_absolute_rgb_difference",
+        "threshold": 0.01,
+        "selection_provenance": "Fixed benchmark threshold grid; validation reports reviewed before final evaluation."
+      },
+      {
+        "name": "global_change_fallback",
+        "policy": "local_threshold_with_global_changed_pixel_fraction_fallback",
+        "local_threshold": 0.05,
+        "global_change_threshold": 0.5,
+        "selection_provenance": "Existing validation configuration and validation report."
+      }
+    ],
+    "warmup_repetitions_per_policy": 3,
+    "timed_repetitions_per_policy": 5,
+    "policy_order_seed": 517017,
+    "timing_scope": "All test frames are preloaded; includes RGB-statistics computation, patch comparisons, and cache updates. Excludes image and mask I/O, reference-feature generation, metric aggregation, and serialization."
+  },
+  "pretrained_dinov2": {
+    "evaluation_config": "configs/pretrained_cache_evaluation.json",
+    "baseline_config": "configs/pretrained_baseline.json",
+    "partition": "validation",
+    "cache_capacity_per_episode": 8,
+    "cache_capacity_selection_provenance": "Prespecified capacity used in the existing Task 15 validation evaluation; the Task 16 validation ablation was reviewed before this final evaluation.",
+    "warmup_repetitions_per_policy_condition_episode": 3,
+    "timed_repetitions_per_policy_condition_episode": 5,
+    "policy_order_seed": 515215,
+    "allow_checkpoint_downloads": false,
+    "timing_scope": "Preloaded validation frames; includes preprocessing, exact input hashing and tensor equality checks, complete DINOv2 forwards on misses, and cache storage or retrieval. Excludes file I/O, model loading, feature audits, serialization, and plotting."
+  },
+  "statistics": {
+    "method": "percentile_cluster_bootstrap",
+    "sampling_unit": "episode",
+    "replicates": 1000,
+    "confidence_level": 0.95,
+    "handcrafted_seed": 10675315,
+    "pretrained_seed": 10675316,
+    "paired_comparisons": "Use identical resampled episode indices for every method within a partition or DINOv2 condition."
+  },
+  "outputs": {
+    "evaluation_json": "results/final_evaluation.json",
+    "evaluation_csv": "results/final_evaluation.csv",
+    "statistics_json": "results/final_statistics.json",
+    "accuracy_figure": "docs/figures/final_accuracy_comparison.png",
+    "efficiency_figure": "docs/figures/final_efficiency_comparison.png"
+  }
+}
